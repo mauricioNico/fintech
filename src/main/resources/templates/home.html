@@ -1,14 +1,31 @@
 <!doctype html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html lang="es" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Home - Banco Fintech</title>
+  <style>
+    body { font-family: Arial, sans-serif; background-color: #f4f6f8; margin: 0; padding: 0; }
+    .navbar { background: #007bff; padding: 10px; display: flex; gap: 15px; }
+    .navbar a, .navbar form button { color: white; text-decoration: none; padding: 8px 12px; background: transparent; border: none; cursor: pointer; }
+    .navbar a:hover, .navbar form button:hover { background: rgba(255,255,255,0.2); border-radius: 4px; }
+    .container { max-width: 800px; margin: 30px auto; background: white; padding: 20px; border-radius: 8px; box-shadow: 0 2px 8px rgba(0,0,0,0.1); }
+  </style>
+</head>
 <body>
-<h2>Home</h2>
-<p>
-  <a th:href="@{/cuenta}">Mi cuenta</a> |
-  <a th:href="@{/transferencia}">Transferir</a> |
+<div class="navbar">
+  <a th:href="@{/cuenta}">Mi cuenta</a>
+  <a th:href="@{/transferencia}">Transferir</a>
   <form th:action="@{/logout}" method="post" style="display:inline;">
-    <button type="submit" style="background:none;border:none;color:blue;cursor:pointer;">Salir</button>
+    <input type="hidden" th:name="${_csrf.parameterName}" th:value="${_csrf.token}">
+    <button type="submit">Salir</button>
   </form>
-</p>
+</div>
+<div class="container">
+  <h2>Bienvenido/a</h2>
+  <p>Usa el menú de arriba para acceder a tu cuenta o realizar transferencias.</p>
+</div>
 </body>
 </html>
+
+
 
