@@ -1,0 +1,47 @@
+classDiagram
+    class Main {
+        +main(String[] args) : void
+    }
+
+    class BancoService {
+        -List~Cliente~ clientes
+        -List~Cuenta~ cuentas
+        +crearCliente(nombre: String, dni: String) : Cliente
+        +crearCuentaParaCliente(cliente: Cliente) : Cuenta
+        +buscarCuenta(numero: int) : Cuenta
+        +getCuentas() : List~Cuenta~
+    }
+
+    class Cliente {
+        -nombre : String
+        -dni : String
+        +getNombre() : String
+        +getDni() : String
+    }
+
+    class Cuenta {
+        -static contadorCuentas : int
+        -numero : int
+        -cliente : Cliente
+        -saldo : double
+        -movimientos : List~Movimiento~
+        +getNumero() : int
+        +getCliente() : Cliente
+        +getSaldo() : double
+        +depositar(monto: double) : void
+        +retirar(monto: double) : boolean
+        +getMovimientos() : List~Movimiento~
+    }
+
+    class Movimiento {
+        -tipo : String
+        -monto : double
+        -fecha : LocalDateTime
+        +toString() : String
+    }
+
+    Main --> BancoService : usa
+    BancoService "1" *-- "*" Cliente : crea
+    BancoService "1" *-- "*" Cuenta : crea
+    Cuenta "1" *-- "1" Cliente : pertenece
+    Cuenta "1" *-- "*" Movimiento : registra

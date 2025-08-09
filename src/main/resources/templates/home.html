@@ -1,0 +1,14 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<h2>Home</h2>
+<p>
+  <a th:href="@{/cuenta}">Mi cuenta</a> |
+  <a th:href="@{/transferencia}">Transferir</a> |
+  <form th:action="@{/logout}" method="post" style="display:inline;">
+    <button type="submit" style="background:none;border:none;color:blue;cursor:pointer;">Salir</button>
+  </form>
+</p>
+</body>
+</html>
+

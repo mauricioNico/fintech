@@ -1,0 +1,22 @@
+<!doctype html>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+<h2>Mi Cuenta</h2>
+<p>Número: <span th:text="${cuenta.numero}"></span></p>
+<p>Saldo: $<span th:text="${cuenta.saldo}"></span></p>
+
+<h3>Depositar</h3>
+<form th:action="@{/cuenta/deposito}" method="post">
+  <input name="monto" type="number" step="0.01" min="0.01" required>
+  <button>Depositar</button>
+</form>
+
+<h3>Movimientos</h3>
+<ul>
+  <li th:each="m : ${cuenta.movimientos}" th:text="${m}"></li>
+</ul>
+
+<p><a th:href="@{/home}">Volver</a></p>
+</body>
+</html>
+
